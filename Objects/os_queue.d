@@ -1,0 +1,12 @@
+.\objects\os_queue.o: src\os_queue.c
+.\objects\os_queue.o: src\os_queue.h
+.\objects\os_queue.o: src\queue.h
+.\objects\os_queue.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\os_queue.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\os_queue.o: src\list.h
+.\objects\os_queue.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\os_queue.o: src\os_task.h
+.\objects\os_queue.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\os_queue.o: src\os.h
+.\objects\os_queue.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\os_queue.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

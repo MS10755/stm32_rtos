@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "os_queue.h": "c",
+        "queue.h": "c",
+        "stdint.h": "c",
+        "os.h": "c",
+        "os_task.h": "c",
+        "random": "c"
+    }
+}

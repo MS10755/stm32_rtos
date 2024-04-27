@@ -1,0 +1,181 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|,CODE
+    2 00000000                 EXTERN           running_tcb
+    3 00000000                 EXTERN           switch_tcb
+    4 00000000                 IMPORT           pendSVC_exit
+    5 00000000                 IMPORT           pendSVC_enter
+    6 00000000         
+    7 00000000         ;pendSVC_exit
+    8 00000000         ; BX LR
+    9 00000000         
+   10 00000000         PendSV_Handler
+   11 00000000                 EXPORT           PendSV_Handler
+   12 00000000 B672            CPSID            i
+   13 00000002         
+   14 00000002         
+   15 00000002 B501            PUSH             {R0,LR}
+   16 00000004 4814            LDR              R0,=running_tcb
+   17 00000006 6800            LDR              R0,[R0]     ;R0 = running_tcb
+   18 00000008 F7FF FFFE       BL               pendSVC_enter
+   19 0000000C E8BD 4001       POP              {R0,LR}
+   20 00000010         
+   21 00000010 F3EF 8009       MRS              R0,PSP
+   22 00000014 B120            CBZ              R0,restore_context
+   23 00000016         
+   24 00000016         save_context
+   25 00000016         ;save current tcb
+   26 00000016         ;SUBS R0,R0,#0x20
+   27 00000016 E920 0FF0       STMDB            R0!,{R4 - R11} ;copy R4-R11 to 
+                                                            p_stack
+   28 0000001A 490F            LDR              R1,=running_tcb
+   29 0000001C 6809            LDR              R1,[R1]     ;R0 = running_tcb
+   30 0000001E 6008            STR              R0,[R1]     ; R0 ->p_stack
+   31 00000020         
+   32 00000020         restore_context
+   33 00000020         ;restore highPority task tcb
+   34 00000020 480E            LDR              R0,=switch_tcb
+   35 00000022 6800            LDR              R0,[R0]     ;R0 = switch_tcb
+   36 00000024 6800            LDR              R0,[R0]     ; R0 ->p_stack
+   37 00000026 E8B0 0FF0       LDM              R0!,{R4 - R11} ;copy p_statck{R
+                                                            4-R11} to CPU
+   38 0000002A F380 8809       MSR              PSP,R0
+   39 0000002E F3BF 8F6F       ISB
+   40 00000032         
+   41 00000032         ;//running_tcb = switch_tcb
+   42 00000032 480A            LDR              R0,=switch_tcb ;
+   43 00000034 6800            LDR              R0,[R0]
+   44 00000036 4908            LDR              R1,=running_tcb ;
+   45 00000038 6008            STR              R0,[R1]
+   46 0000003A         
+   47 0000003A B501            PUSH             {R0,LR}
+   48 0000003C F7FF FFFE       BL               pendSVC_exit
+   49 00000040 E8BD 4001       POP              {R0,LR}
+   50 00000044         
+   51 00000044 F04E 0E0D       ORR              LR,LR,#0x0D ;Thumb status,USE P
+                                                            SP,return thread mo
+                                                            de
+   52 00000048         
+   53 00000048 B662            CPSIE            i
+   54 0000004A 4770            BX               LR          ;//should not be he
+                                                            re
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   55 0000004C         
+   56 0000004C         
+   57 0000004C         init_cpu
+   58 0000004C                 EXPORT           init_cpu
+   59 0000004C F04F 0000       LDR              R0,=0x00000000
+   60 00000050 F380 8809       MSR              PSP,R0
+   61 00000054 4770            BX               LR
+   62 00000056 BF00            NOP
+   63 00000058         
+   64 00000058                 END
+              00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\cpu.d -o.\objects\cpu.o -I.\RTE\Device\STM32F103C8 -I.\R
+TE\_Target_1 -ID:\Users\Juan\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core
+\Include -ID:\Users\Juan\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Devic
+e\Include -ID:\Users\Juan\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Devi
+ce\StdPeriph_Driver\inc --predefine="__UVISION_VERSION SETA 528" --predefine="_
+RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --list=.\listings\cpu.lst src\cp
+u.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file src\cpu.s
+   Uses
+      None
+Comment: .text unused
+PendSV_Handler 00000000
+
+Symbol: PendSV_Handler
+   Definitions
+      At line 10 in file src\cpu.s
+   Uses
+      At line 11 in file src\cpu.s
+Comment: PendSV_Handler used once
+init_cpu 0000004C
+
+Symbol: init_cpu
+   Definitions
+      At line 57 in file src\cpu.s
+   Uses
+      At line 58 in file src\cpu.s
+Comment: init_cpu used once
+restore_context 00000020
+
+Symbol: restore_context
+   Definitions
+      At line 32 in file src\cpu.s
+   Uses
+      At line 22 in file src\cpu.s
+Comment: restore_context used once
+save_context 00000016
+
+Symbol: save_context
+   Definitions
+      At line 24 in file src\cpu.s
+   Uses
+      None
+Comment: save_context unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+pendSVC_enter 00000000
+
+Symbol: pendSVC_enter
+   Definitions
+      At line 5 in file src\cpu.s
+   Uses
+      At line 18 in file src\cpu.s
+Comment: pendSVC_enter used once
+pendSVC_exit 00000000
+
+Symbol: pendSVC_exit
+   Definitions
+      At line 4 in file src\cpu.s
+   Uses
+      At line 48 in file src\cpu.s
+Comment: pendSVC_exit used once
+running_tcb 00000000
+
+Symbol: running_tcb
+   Definitions
+      At line 2 in file src\cpu.s
+   Uses
+      At line 16 in file src\cpu.s
+      At line 28 in file src\cpu.s
+      At line 44 in file src\cpu.s
+
+switch_tcb 00000000
+
+Symbol: switch_tcb
+   Definitions
+      At line 3 in file src\cpu.s
+   Uses
+      At line 34 in file src\cpu.s
+      At line 42 in file src\cpu.s
+
+4 symbols
+344 symbols in table
