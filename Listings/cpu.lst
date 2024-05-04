@@ -61,8 +61,8 @@ ARM Macro Assembler    Page 1
                                                             de
    52 00000048         
    53 00000048 B662            CPSIE            i
-   54 0000004A 4770            BX               LR          ;//should not be he
-                                                            re
+   54 0000004A 4770            BX               LR          ;return PSP thread 
+                                                            task
 
 
 

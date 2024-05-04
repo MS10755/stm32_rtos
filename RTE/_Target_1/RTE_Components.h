@@ -16,6 +16,8 @@
  */
 #define CMSIS_device_header "stm32f10x.h"
 
+/*  Keil::Device:StdPeriph Drivers:DMA:3.6.0 */
+#define RTE_DEVICE_STDPERIPH_DMA
 /*  Keil::Device:StdPeriph Drivers:Framework:3.6.0 */
 #define RTE_DEVICE_STDPERIPH_FRAMEWORK
 /*  Keil::Device:StdPeriph Drivers:GPIO:3.6.0 */

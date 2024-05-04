@@ -19,6 +19,7 @@ void LLA_SYS_Time_Init(){
 extern void change_task(void);
 extern void os_checkDelayList(void);
 extern void os_selectNextPrioityHighestTask(void);
+void os_checkQueueList(void);
 void SysTick_Handler(void){
 	os_tick_count++;
 	System_ms++;
@@ -28,6 +29,7 @@ void SysTick_Handler(void){
 		timeSliceTicks = os_tick_count + OS_TIMESLICE_TICKS;
 	}
 		os_checkDelayList();
+		os_checkQueueList();
 	}
 }
 

@@ -34,81 +34,90 @@
 
 [region info]
 [load region] LR_IROM1
-	[execution region] ER_IROM1, 0x08000000, 0x00010000, 0x00001E14 [memory type] 2 [memory ID] 3
+	[execution region] ER_IROM1, 0x08000000, 0x00010000, 0x00002C04 [memory type] 2 [memory ID] 3
 
-	[execution region] RW_IRAM1, 0x20000000, 0x00005000, 0x00001498 [memory type] 1 [memory ID] 2
-		[ZI block] addr: 0x2000004C, size: 0x0000144C (5196)
+	[execution region] RW_IRAM1, 0x20000000, 0x00005000, 0x00002758 [memory type] 1 [memory ID] 2
+		[ZI block] addr: 0x2000006C, size: 0x000026EC (9964)
 
 
-[object name max length] 10
-[object path max length] 16
+[object name max length] 18
+[object path max length] 46
 
 [object in map file]
-[object name] cpu.o       [path] .\src\cpu.s
-[object name] led.o       [path] .\BSP\led.c
-[object name] list.o      [path] .\src\list.c
-[object name] main.o      [path] .\src\main.c
-[object name] os.o        [path] .\src\os.c
-[object name] os_cpu.o    [path] .\src\os_cpu.c
-[object name] os_queue.o  [path] .\src\os_queue.c
-[object name] os_task.o   [path] .\src\os_task.c
-[object name] queue.o     [path] .\src\queue.c
-[object name] startup_stm32f10x_md.o            [path] (null)
-[object name] stdio.o     [path] .\src\stdio.c
-[object name] stm32f10x_gpio.o      [path] (null)
+[object name] cpu.o               [path] .\src\cpu.s
+[object name] fault_trace.o       [path] .\src\fault_trace.c
+[object name] juan_eventbutton.o  [path] .\src\LIBS\Juan_eventButton\Juan_eventButton.c
+[object name] key.o               [path] .\src\key.c
+[object name] led.o               [path] .\BSP\led.c
+[object name] list.o              [path] .\src\list.c
+[object name] main.o              [path] .\src\main.c
+[object name] os.o                [path] .\src\os.c
+[object name] os_cpu.o            [path] .\src\os_cpu.c
+[object name] os_queue.o          [path] .\src\os_queue.c
+[object name] os_task.o           [path] .\src\os_task.c
+[object name] queue.o             [path] .\src\queue.c
+[object name] startup_stm32f10x_md.o    [path] (null)
+[object name] stdio.o             [path] .\src\stdio.c
+[object name] stm32f10x_gpio.o    [path] (null)
 [object name] stm32f10x_rcc.o     [path] (null)
-[object name] stm32f10x_usart.o       [path] (null)
-[object name] sys_tick.o  [path] .\src\sys_tick.c
-[object name] system_stm32f10x.o        [path] (null)
-[object name] uart.o      [path] .\src\uart.c
+[object name] stm32f10x_usart.o   [path] (null)
+[object name] sys_tick.o          [path] .\src\sys_tick.c
+[object name] system_stm32f10x.o  [path] (null)
+[object name] uart.o              [path] .\src\uart.c
 
 [file path in keil project]
-[old name] main.c      [type] 1   [path] .\src\main.c
-[old name] cpu.s       [type] 1   [path] .\src\cpu.s
-[old name] uart.c      [type] 1   [path] .\src\uart.c
-[old name] stdio.c     [type] 1   [path] .\src\stdio.c
-[old name] sys_tick.c  [type] 1   [path] .\src\sys_tick.c
-[old name] os_task.c   [type] 1   [path] .\src\os_task.c
-[old name] os_cpu.c    [type] 1   [path] .\src\os_cpu.c
-[old name] os.c        [type] 1   [path] .\src\os.c
-[old name] os_mem.c    [type] 1   [path] .\src\os_mem.c
-[old name] list.c      [type] 1   [path] .\src\list.c
-[old name] queue.c     [type] 1   [path] .\src\queue.c
-[old name] os_queue.c  [type] 1   [path] .\src\os_queue.c
-[old name] led.c       [type] 1   [path] .\BSP\led.c
+[old name] uart.c              [type] 1   [path] .\src\uart.c
+[old name] stdio.c             [type] 1   [path] .\src\stdio.c
+[old name] sys_tick.c          [type] 1   [path] .\src\sys_tick.c
+[old name] os_task.c           [type] 1   [path] .\src\os_task.c
+[old name] os_cpu.c            [type] 1   [path] .\src\os_cpu.c
+[old name] os.c                [type] 1   [path] .\src\os.c
+[old name] os_mem.c            [type] 1   [path] .\src\os_mem.c
+[old name] list.c              [type] 1   [path] .\src\list.c
+[old name] queue.c             [type] 1   [path] .\src\queue.c
+[old name] os_queue.c          [type] 1   [path] .\src\os_queue.c
+[old name] key.c               [type] 1   [path] .\src\key.c
+[old name] main.c              [type] 1   [path] .\src\main.c
+[old name] fault_trace.c       [type] 1   [path] .\src\fault_trace.c
+[old name] cpu.s               [type] 1   [path] .\src\cpu.s
+[old name] led.c               [type] 1   [path] .\BSP\led.c
+[old name] Juan_eventButton.c  [type] 1   [path] .\src\LIBS\Juan_eventButton\Juan_eventButton.c
 
 [record region info]
 [load region] LR_IROM1
-	[execution region] ER_IROM1, 0x08000000, 0x00010000, 0x00001E24 [type] 2 [ID] 3
-	[execution region] RW_IRAM1, 0x20000000, 0x00005000, 0x00001498 [type] 1 [ID] 2
-----------------------------------------------------------------------------
-       FILE(s)       |         RAM (byte)       |       FLASH (byte)       |
-----------------------------------------------------------------------------
-.\src\cpu.s():       |           0              |          96              |
-.\BSP\led.c():       |           0              |         164              |
-.\src\list.c():      |           0              |         628              |
-.\src\main.c():      |        2824              |         513  [-16]       |
-.\src\os.c():        |         564              |         230              |
-.\src\os_cpu.c():    |           0              |          20              |
-.\src\os_queue.c():  |           0              |         562              |
-.\src\os_task.c():   |         189              |         733              |
-.\src\queue.c():     |           0              |         520              |
-.\src\stdio.c():     |           4              |          36              |
-.\src\sys_tick.c():  |          12              |         204              |
-.\src\uart.c():      |           0              |         136              |
-----------------------------------------------------------------------------
+	[execution region] ER_IROM1, 0x08000000, 0x00010000, 0x00002C04 [type] 2 [ID] 3
+	[execution region] RW_IRAM1, 0x20000000, 0x00005000, 0x00002758 [type] 1 [ID] 2
+----------------------------------------------------------------------------------------------------------
+                      FILE(s)                      |         RAM (byte)       |       FLASH (byte)       |
+----------------------------------------------------------------------------------------------------------
+.\src\cpu.s():                                     |           0              |          96              |
+.\src\fault_trace.c():                             |         150              |         442              |
+.\src\LIBS\Juan_eventButton\Juan_eventButton.c():  |           0              |        1025              |
+.\src\key.c():                                     |           0              |         104              |
+.\BSP\led.c():                                     |           0              |         164              |
+.\src\list.c():                                    |           0              |         628              |
+.\src\main.c():                                    |        7428              |         952              |
+.\src\os.c():                                      |         612              |         250              |
+.\src\os_cpu.c():                                  |           0              |          20              |
+.\src\os_queue.c():                                |           0              |        1126              |
+.\src\os_task.c():                                 |         189              |         785              |
+.\src\queue.c():                                   |           0              |         678              |
+.\src\stdio.c():                                   |           4              |          36              |
+.\src\sys_tick.c():                                |          12              |         208              |
+.\src\uart.c():                                    |           0              |         136              |
+----------------------------------------------------------------------------------------------------------
 [memory print mode]: 0
 LR_IROM1
         RAM 1             [0x20000000 | 0x00005000 (20480)]
-                [zi start] 1   [zi end] 12
-                RW_IRAM1  [0x20000000]|¡ö¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ______________________________________| (   5.1 KB /  20.0 KB )  25.7%  
+                [zi start] 1   [zi end] 24
+                RW_IRAM1  [0x20000000]|¡ö¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ__________________________| (   9.8 KB /  20.0 KB )  49.2%  
  
         FLASH 1           [0x08000000 | 0x00010000 (65536)]
-                ER_IROM1  [0x08000000]|¡ö¡ö¡ö¡ö¡ö_____________________________________________| (   7.5 KB /  64.0 KB )  11.7%  [-16]
+                ER_IROM1  [0x08000000]|¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö__________________________________________| (  11.0 KB /  64.0 KB )  17.2%  
  
 [htm file path] F:\Project\rtos_study\stm32_rtos\Objects\rtos.htm
-Maximum Stack Usage =        152 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)
+Maximum Stack Usage =        208 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)
  
 =============================================================================================================================
 
-run time: 0.041 s
+run time: 0.048 s

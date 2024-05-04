@@ -1,5 +1,5 @@
 #include "os_task.h"
-
+#include <string.h>
 os_tcb_t * running_tcb = 0x00;
 os_tcb_t * switch_tcb =0x00;
 bool os_need_yiled = false;
@@ -23,8 +23,14 @@ void os_task_errorExit(){
 
 void os_selectNextPrioityHighestTask(void);
 
-void os_task_create(os_tcb_t * tcb,os_stack_t * stack,uint32_t stack_size,task_t task,os_taskPriority_t priority){
+void os_task_create(os_tcb_t * tcb,os_stack_t * stack,uint32_t stack_size,task_t task,const char *name,os_taskPriority_t priority){
 	os_suspend();
+    if(name){
+        int name_len = strlen(name);
+        strncpy(tcb->name,name,name_len < OS_TASK_NAME_LEN_MAX ? name_len :OS_TASK_NAME_LEN_MAX);
+    }
+	tcb->stack = stack;
+	tcb->stack_size = stack_size;
 	tcb->p_stack = (os_stack_t*)((uint32_t)(stack+ stack_size-1) & 0xFFFFFFF8);//8字节对齐地址
 	*(--tcb->p_stack) = 0x01000000;// xPSR
 	*(--tcb->p_stack) = (uint32_t)task;//PC

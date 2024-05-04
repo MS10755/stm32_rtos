@@ -22,46 +22,64 @@ Dialog DLL:      TCM.DLL V1.36.2.0
  
 <h2>Project:</h2>
 F:\Project\rtos_study\stm32_rtos\rtos.uvprojx
-Project File Date:  04/26/2024
+Project File Date:  05/02/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling main.c...
+.\src\LIBS\Juan_eventButton\Juan_eventButton.h(133): warning:  #815-D: type qualifier on return type is meaningless
+  const char * const JEB(event_str)(JEB(event_t) event);
+src\sys_lib.h(17): warning:  #1-D: last line of file ends without a newline
+  #endif
+src\os_taskhelper.h(17): warning:  #1-D: last line of file ends without a newline
+  #endif
+src\main.c(74): warning:  #188-D: enumerated type mixed with another type
+          JUAN_EVENTBUTTON_notify(&key0,key_read(0));
+src\main.c(75): warning:  #188-D: enumerated type mixed with another type
+          JUAN_EVENTBUTTON_notify(&key1,key_read(1));
+src\main.c(76): warning:  #188-D: enumerated type mixed with another type
+          JUAN_EVENTBUTTON_notify(&key2,key_read(2));
+src\main.c(84): warning:  #1295-D: Deprecated declaration function_a - give arg types
+  void function_a();
+src\main.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=7360 RO-data=340 RW-data=76 ZI-data=5196  
+Program Size: Code=10712 RO-data=556 RW-data=108 ZI-data=9964  
 After Build - User command #1: F:\Project\rtos_study\stm32_rtos\keil-build-viewer.exe
 =================================================== keil-build-viewer v1.5b ==================================================
  
 [rtos.uvprojx]  [Target 1]  [STM32F103C8]
  
-----------------------------------------------------------------------------
-       FILE(s)       |         RAM (byte)       |       FLASH (byte)       |
-----------------------------------------------------------------------------
-.\src\cpu.s():       |           0              |          96              |
-.\BSP\led.c():       |           0              |         164              |
-.\src\list.c():      |           0              |         628              |
-.\src\main.c():      |        2824              |         513  [-16]       |
-.\src\os.c():        |         564              |         230              |
-.\src\os_cpu.c():    |           0              |          20              |
-.\src\os_queue.c():  |           0              |         562              |
-.\src\os_task.c():   |         189              |         733              |
-.\src\queue.c():     |           0              |         520              |
-.\src\stdio.c():     |           4              |          36              |
-.\src\sys_tick.c():  |          12              |         204              |
-.\src\uart.c():      |           0              |         136              |
-----------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+                      FILE(s)                      |         RAM (byte)       |       FLASH (byte)       |
+----------------------------------------------------------------------------------------------------------
+.\src\cpu.s():                                     |           0              |          96              |
+.\src\fault_trace.c():                             |         150              |         442              |
+.\src\LIBS\Juan_eventButton\Juan_eventButton.c():  |           0              |        1025              |
+.\src\key.c():                                     |           0              |         104              |
+.\BSP\led.c():                                     |           0              |         164              |
+.\src\list.c():                                    |           0              |         628              |
+.\src\main.c():                                    |        7428              |         952              |
+.\src\os.c():                                      |         612              |         250              |
+.\src\os_cpu.c():                                  |           0              |          20              |
+.\src\os_queue.c():                                |           0              |        1126              |
+.\src\os_task.c():                                 |         189              |         785              |
+.\src\queue.c():                                   |           0              |         678              |
+.\src\stdio.c():                                   |           4              |          36              |
+.\src\sys_tick.c():                                |          12              |         208              |
+.\src\uart.c():                                    |           0              |         136              |
+----------------------------------------------------------------------------------------------------------
 LR_IROM1
         RAM 1             [0x20000000 | 0x00005000 (20480)]
-                RW_IRAM1  [0x20000000]|¡ö¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ______________________________________| (   5.1 KB /  20.0 KB )  25.7%  
+                RW_IRAM1  [0x20000000]|¡ö¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ¡õ__________________________| (   9.8 KB /  20.0 KB )  49.2%  
  
         FLASH 1           [0x08000000 | 0x00010000 (65536)]
-                ER_IROM1  [0x08000000]|¡ö¡ö¡ö¡ö¡ö_____________________________________________| (   7.5 KB /  64.0 KB )  11.7%  [-16]
+                ER_IROM1  [0x08000000]|¡ö¡ö¡ö¡ö¡ö¡ö¡ö¡ö__________________________________________| (  11.0 KB /  64.0 KB )  17.2%  
  
-Maximum Stack Usage =        152 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)
+Maximum Stack Usage =        208 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)
  
 =============================================================================================================================
-".\Objects\rtos.axf" - 0 Error(s), 0 Warning(s).
+".\Objects\rtos.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -76,6 +94,7 @@ Package Vendor: Keil
                 Keil.STM32F1xx_DFP.2.4.1
                 STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
    * Component: Startup Version: 1.0.0
+   * Component: DMA Version: 3.6.0
    * Component: Framework Version: 3.6.0
    * Component: GPIO Version: 3.6.0
    * Component: RCC Version: 3.6.0
@@ -98,25 +117,29 @@ Package Vendor: Keil
       Source file:   Device\Source\system_stm32f10x.c
       Source file:   Device\Source\ARM\STM32F1xx_OPT.s
 
+   * Component: Keil::Device:StdPeriph Drivers:DMA:3.6.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f10x_dma.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_dma.h
+
    * Component: Keil::Device:StdPeriph Drivers:Framework:3.6.0
+      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_it.c
+      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_conf.h
       Include file:  Device\StdPeriph_Driver\inc\misc.h
       Include file:  Device\StdPeriph_Driver\templates\stm32f10x_it.h
       Source file:   Device\StdPeriph_Driver\src\misc.c
-      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_conf.h
-      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_it.c
 
    * Component: Keil::Device:StdPeriph Drivers:GPIO:3.6.0
-      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_gpio.h
       Source file:   Device\StdPeriph_Driver\src\stm32f10x_gpio.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_gpio.h
 
    * Component: Keil::Device:StdPeriph Drivers:RCC:3.6.0
-      Source file:   Device\StdPeriph_Driver\src\stm32f10x_rcc.c
       Include file:  Device\StdPeriph_Driver\inc\stm32f10x_rcc.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f10x_rcc.c
 
    * Component: Keil::Device:StdPeriph Drivers:USART:3.6.0
       Include file:  Device\StdPeriph_Driver\inc\stm32f10x_usart.h
       Source file:   Device\StdPeriph_Driver\src\stm32f10x_usart.c
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

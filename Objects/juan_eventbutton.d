@@ -1,0 +1,9 @@
+.\objects\juan_eventbutton.o: src\LIBS\Juan_eventButton\Juan_eventButton.c
+.\objects\juan_eventbutton.o: src\LIBS\Juan_eventButton\Juan_eventButton.h
+.\objects\juan_eventbutton.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\juan_eventbutton.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\juan_eventbutton.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\juan_eventbutton.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\juan_eventbutton.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\juan_eventbutton.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\juan_eventbutton.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h

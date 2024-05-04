@@ -11,3 +11,9 @@
 .\objects\main.o: src\os_queue.h
 .\objects\main.o: src\queue.h
 .\objects\main.o: .\BSP\bsp.h
+.\objects\main.o: .\src\LIBS\Juan_eventButton\Juan_eventButton.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\main.o: src\os_semaphore.h
+.\objects\main.o: src\os_taskhelper.h
+.\objects\main.o: src\sys_lib.h

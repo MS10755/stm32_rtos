@@ -51,7 +51,7 @@ restore_context
 	ORR LR,LR,#0x0D	;Thumb status,USE PSP,return thread mode
 	
 	CPSIE i
-	BX LR	;//should not be here
+	BX LR ;return PSP thread task
 
 
 init_cpu

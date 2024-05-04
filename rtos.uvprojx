@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\src\unity;.\BSP</IncludePath>
+              <IncludePath>.\src\unity;.\BSP;.\src\LIBS\Juan_eventButton;.\src\LIBS\CmBacktrace\cm_backtrace</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -372,7 +372,7 @@
             <ScatterFile>.\Objects\rtos.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc></Misc>
+            <Misc>--symdefs=symbox.txt</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>
@@ -382,16 +382,6 @@
         <Group>
           <GroupName>MAIN</GroupName>
           <Files>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>cpu.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\src\cpu.s</FilePath>
-            </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
@@ -442,6 +432,26 @@
               <FileType>1</FileType>
               <FilePath>.\src\os_queue.c</FilePath>
             </File>
+            <File>
+              <FileName>key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\key.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>fault_trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\fault_trace.c</FilePath>
+            </File>
+            <File>
+              <FileName>cpu.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\src\cpu.s</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -453,6 +463,19 @@
               <FilePath>.\BSP\led.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>Juan_EVENTBUTTON</GroupName>
+          <Files>
+            <File>
+              <FileName>Juan_eventButton.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\LIBS\Juan_eventButton\Juan_eventButton.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>cm_Backtrace</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
@@ -474,6 +497,12 @@
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32F1xx CMSIS">
+        <package name="STM32F1xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.4.1"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DMA" Cvendor="Keil" Cversion="3.6.0" condition="STM32F1xx STDPERIPH RCC">
         <package name="STM32F1xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.4.1"/>
         <targetInfos>
           <targetInfo name="Target 1"/>

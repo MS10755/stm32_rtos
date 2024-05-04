@@ -26,7 +26,11 @@ Queue_t * queue_create(queueSize_t size,queueSize_t itemSize,Queue_type_t type){
 
     Queue_t * newQueue = ( Queue_t *)p_queue;
     newQueue->type = type;
-    newQueue->capacity = size;
+    if(type == QUEUE_TYPE_MUTEX){
+        newQueue->capacity = QUEUE_MUTEX_MAX_RECUR;
+    }else{
+        newQueue->capacity = size;
+    }
     newQueue->len = 0;
     newQueue->itemSizeBytes = itemSize;
     newQueue->owner = NULL;
@@ -104,7 +108,7 @@ static queueRet_t queue_move_read_index(Queue_t * queue){
  */
 queueRet_t queue_write(Queue_t * queue,void * item){
     queueRet_t ret = QUEUE_FAILED;
-    if(queue_isFull(queue)) return QUEUE_FAILED;
+    if(queue_isFull(queue,item)) return QUEUE_FAILED;
     if(queue->type == QUEUE_TYPE_COUNT){
         if(queue->len < queue->capacity){
             queue->len++;
@@ -121,8 +125,21 @@ queueRet_t queue_write(Queue_t * queue,void * item){
     }else if(queue->type == QUEUE_TYPE_NORMAL){
         os_memove(queue->p_write,item,queue->itemSizeBytes);
         ret = queue_move_write_index(queue);
+    }else if(queue->type == QUEUE_TYPE_MUTEX){
+        if(queue->owner == NULL || item == queue->owner){
+            queue->owner = item;
+            if(queue->len < QUEUE_MUTEX_MAX_RECUR){
+                queue->len++;
+            }
+            ret = QUEUE_OK;
+        }else{
+            // cannot write queue,deal with it;
+            while (1)
+            {
+                /* code */
+            }
+        }
     }
-
     return ret;
 }
 
@@ -135,7 +152,12 @@ queueRet_t queue_write(Queue_t * queue,void * item){
  */
 queueRet_t queue_read(Queue_t * queue,void * item){
     queueRet_t ret = QUEUE_FAILED;
-    if(queue_get_len(queue) == 0) return QUEUE_FAILED;
+    if(queue->type == QUEUE_TYPE_MUTEX){
+        if(queue->owner && queue->owner != item){
+            return ret;
+        }
+    }
+    if(queue_get_len(queue,item) == 0) return QUEUE_FAILED;
 
     if(queue->type == QUEUE_TYPE_COUNT){
         if(queue->len > 0){
@@ -153,8 +175,23 @@ queueRet_t queue_read(Queue_t * queue,void * item){
     }else if(queue->type == QUEUE_TYPE_NORMAL){
         os_memove(item,queue->p_read,queue->itemSizeBytes);
         ret = queue_move_read_index(queue);
+    }else if(queue->type == QUEUE_TYPE_MUTEX){
+        if(item == queue->owner){
+            if(queue->len > 0){
+                queue->len--;
+            }
+            if(queue->len == 0){
+                queue->owner = NULL;
+            }
+            ret = QUEUE_OK;
+        }else{
+            // cannot write queue,deal with it;
+            while (1)
+            {
+                /* code */
+            }
+        }
     }
-
     return ret;
 }
 
@@ -164,7 +201,7 @@ queueRet_t queue_read(Queue_t * queue,void * item){
  * @param queue : 
  * @return queueSize_t : 
  */
-queueSize_t queue_get_len(Queue_t * queue){
+queueSize_t queue_get_len(Queue_t * queue,void *parms){
     if(queue->type == QUEUE_TYPE_COUNT){
         return queue->len;
     }else if(queue->type == QUEUE_TYPE_NORMAL){
@@ -180,6 +217,14 @@ queueSize_t queue_get_len(Queue_t * queue){
         }else if(writeIndex < readIndex){
             return queue->capacity + writeIndex - readIndex;
         }
+    }else if(queue->type == QUEUE_TYPE_MUTEX){
+        if(queue->owner == NULL){
+            return 0;
+        }else if(queue->owner == parms){
+            return queue->len;
+        }else{
+            return queue->capacity;
+        }
     }
     return 0;
 }
@@ -191,8 +236,8 @@ queueSize_t queue_get_len(Queue_t * queue){
  * @return true : 
  * @return false : 
  */
-bool queue_isFull(Queue_t * queue){
-    if(queue_get_len(queue) == queue->capacity){
+bool queue_isFull(Queue_t * queue,void *parms){
+    if(queue_get_len(queue,parms) == queue->capacity){
         return true;
     }else{
         return false;
